@@ -2,43 +2,26 @@ import 'package:flutter/services.dart';
 import 'package:tps530/core/utls.dart';
 
 class NfcServiceMethodChannel {
-  static const platform = MethodChannel('com.example.tps530/nfc');
-  static const eventChannel = MethodChannel('com.example.tps530/nfc');
+  static const MethodChannel platform = MethodChannel('com.example.tps530/nfc');
 
-  Future<void> openNfc() async {
+  Future<String?> getCardID() async {
     try {
-      final result = await platform.invokeMethod('nfcOpen');
-      print(result);
+      final String? cardID = await platform.invokeMethod('nfcListen');
+      return cardID;
     } on PlatformException catch (e) {
-      nfcController.nfcIsStart.value = false;
-      print("Failed to open NFC: '${e.message}'.");
+      print("Failed to get card ID: '${e.message}'.");
+      return null;
     }
   }
 
-  Future<void> checkNfc() async {
-    try {
-      final result = await platform.invokeMethod('nfcCheck');
-      print(result);
-    } on PlatformException catch (e) {
-      print("Failed to check NFC: '${e.message}'.");
-    }
+  Future<String?> openNfc() async {
+    final String nfcOpen = await platform.invokeMethod('nfcOpen');
+    print('nfcOpen: $nfcOpen');
+    return nfcOpen;
   }
 
   Future<void> closeNfc() async {
-    try {
-      final result = await platform.invokeMethod('nfcClose');
-      print(result);
-    } on PlatformException catch (e) {
-      print("Failed to close NFC: '${e.message}'.");
-    }
-  }
-
-  void onNfcDataReceived(Function(String) onData) {
-    platform.setMethodCallHandler((call) async {
-      if (call.method == "onNfcDataReceived") {
-        String tagId = call.arguments;
-        onData(tagId);
-      }
-    });
+    final String nfcClose = await platform.invokeMethod('nfcClose');
+    print('nfcOpen: $nfcClose');
   }
 }

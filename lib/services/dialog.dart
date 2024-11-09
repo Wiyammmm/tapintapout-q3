@@ -11,25 +11,25 @@ class DialogServices {
           title: Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 40),
+            // style: TextStyle(fontSize: 40),
           ),
           content: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             alignment: WrapAlignment.center,
             children: [
-              Text(
-                label,
-                style: TextStyle(fontSize: 25),
-              ),
-              SizedBox(
-                height: 20,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  label,
+                  // style: TextStyle(fontSize: 25),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                       height: 50,
-                      width: 200,
+                      // width: 200,
                       child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -40,18 +40,18 @@ class DialogServices {
                           child: const FittedBox(
                             child: Text(
                               'NO',
-                              style: TextStyle(fontSize: 50),
+                              // style: TextStyle(fontSize: 50),
                             ),
                           ))),
                   SizedBox(
                       height: 50,
-                      width: 200,
+                      // width: 200,
                       child: ElevatedButton(
                           onPressed: onConfirm,
                           child: const FittedBox(
                             child: Text(
                               'YES',
-                              style: TextStyle(fontSize: 50),
+                              // style: TextStyle(fontSize: 50),
                             ),
                           )))
                 ],
@@ -71,14 +71,16 @@ class DialogServices {
           title: Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 40),
+            // style: TextStyle(fontSize: 40),
           ),
           content: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                label,
-                style: TextStyle(fontSize: 25),
+              Flexible(
+                child: Text(
+                  label,
+                  // style: TextStyle(fontSize: 25),
+                ),
               ),
             ],
           ),
@@ -127,22 +129,22 @@ class DialogServices {
         return AlertDialog(
           title: Image.asset(
             'assets/filipaylogobanner.png',
-            width: 90,
-            height: 90,
+            width: 50,
+            height: 50,
           ),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Text(
                     'Your Traveled Fare is ${fare.toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 30),
+                    // style: TextStyle(fontSize: 30),
                   ),
                   Text(
                     'WELCOME!\nHAVE A SAFE RIDE',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   )
                 ],
               ),
@@ -172,26 +174,26 @@ class DialogServices {
         return AlertDialog(
           title: Image.asset(
             'assets/filipaylogobanner.png',
-            width: 90,
-            height: 90,
+            width: 50,
+            height: 50,
           ),
           content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Text(
                     'Your Traveled Fare is ${double.parse(item['maxFare'].toString()).toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 30),
+                    // style: TextStyle(fontSize: 20),
                   ),
                   Text(
                     'We had refund -${double.parse(item['refund'].toString()).toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 30),
+                    // style: TextStyle(fontSize: 20),
                   ),
                   Divider(),
                   Text(
                     'Remaining Balance: ${double.parse('${item['remainingBalance']}').toStringAsFixed(2)}',
-                    style: TextStyle(fontSize: 30),
+                    // style: TextStyle(fontSize: 20),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -206,11 +208,11 @@ class DialogServices {
                             children: [
                               Text(
                                 'Traveled Distance',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                               Text(
                                 '${item['kmRun']}',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                             ],
                           ),
@@ -219,11 +221,11 @@ class DialogServices {
                             children: [
                               Text(
                                 'Traveled Fare',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                               Text(
                                 '${double.parse(item['fare'].toString()).toStringAsFixed(2)}',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                             ],
                           ),
@@ -232,11 +234,11 @@ class DialogServices {
                             children: [
                               Text(
                                 'Discount',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                               Text(
                                 '${double.parse(item['discount'].toString()).toStringAsFixed(2)}',
-                                style: TextStyle(fontSize: 30),
+                                // style: TextStyle(fontSize: 30),
                               ),
                             ],
                           )

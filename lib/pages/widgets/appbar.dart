@@ -15,9 +15,11 @@ class AppBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '${dataController.coopData['cooperativeName']}',
-            style: TextStyle(color: Colors.white, fontSize: 40),
+          FittedBox(
+            child: Text(
+              '${dataController.coopData['cooperativeName']}',
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),

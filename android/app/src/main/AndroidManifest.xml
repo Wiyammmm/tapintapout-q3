@@ -1,10 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<uses-permission android:name="android.permission.NFC" />
-<uses-feature
-        android:name="android.hardware.nfc"
-        android:required="true" />
-
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         <uses-permission android:maxSdkVersion="31" android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -18,7 +13,62 @@
 <uses-permission android:minSdkVersion="31" android:name="android.permission.BLUETOOTH_SCAN" />
 <uses-permission android:minSdkVersion="32" android:name="android.permission.NEARBY_WIFI_DEVICES" />
 <!-- Optional: only required for FILE payloads -->
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+
+ <queries>
+        <package android:name="com.wizarpos.apiadapter" />
+    </queries>
+
+    <!--WRITE_EXTERNAL_STORAGE-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    
+    <!-- HDMI-CLOUDPOS_CLONESCREEN -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CLONESCREEN" />
+    <!--D3 ADAPTER-->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER_ADAPTER" />
+    <!-- CLOUDPOS_PRINTER -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER" />
+    <!-- MSR -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MSR"/>
+    <!-- Contactless card-->
+    <uses-permission android:name="android.permission.CLOUDPOS_CONTACTLESS_CARD"/>
+    <!-- SmartCard-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SMARTCARD"/>
+    <!-- Serial port -->
+    <uses-permission android:name="android.permission.CLOUDPOS_SERIAL" />
+    <!-- LED -->
+    <uses-permission android:name="android.permission.CLOUDPOS_LED" />
+    
+    <!-- CLOUDPOS_CUSTOMER_DISPLAY -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CUSTOMER_DISPLAY" />
+    
+    <!-- Pinpad -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_GET_PIN_BLOCK"/> 
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_MAC" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_ENCRYPT_DATA"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY"/>
+    
+    <!-- Chinese ID -->
+    <uses-permission android:name="android.permission.CLOUDPOS_IDCard"/>
+ 
+   
+
+    <!-- CLOUDPOS_MONEYBOX -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX"/>
+    <!-- CLOUDPOS_FINGERPRINT -->
+    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT"/>
+    <!--CLOUDPOS_SIGNATURE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SIGNATURE"/>
+    <!--CLOUDPOS_SAFE_MODULE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SAFE_MODULE" />
+    <!--SYSTEM_ALERT_WINDOW-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY"/>
     <application
         android:label="Filipay"
         android:name="${applicationName}"

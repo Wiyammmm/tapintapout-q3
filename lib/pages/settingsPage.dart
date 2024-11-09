@@ -41,13 +41,13 @@ class _SettingsPageState extends State<SettingsPage> {
               const Text(
                 'UDP Status: ',
                 style: TextStyle(
-                  fontSize: 30,
-                ),
+                    // fontSize: 30,
+                    ),
               ),
               Text(
                 '${udpController.isConnected.value ? 'Connected' : 'Disconnected'}',
                 style: TextStyle(
-                    fontSize: 30,
+                    // fontSize: 30,
                     color: udpController.isConnected.value
                         ? Colors.green
                         : Colors.red),
@@ -72,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: FittedBox(
                   child: Text(
                     '${udpController.isConnected.value ? 'Disconnect' : 'Connect'} UDP',
-                    style: TextStyle(fontSize: 50),
+                    // style: TextStyle(fontSize: 50),
                   ),
                 )),
           ),
@@ -88,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: const FittedBox(
                       child: Text(
                     'Send UDP Message',
-                    style: TextStyle(fontSize: 50),
+                    // style: TextStyle(fontSize: 50),
                   ))),
             ),
           Expanded(
@@ -101,55 +101,61 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
           ),
-          SizedBox(
-            width: 500,
-            height: 80,
-            child: ElevatedButton(
-                onPressed: () {
-                  if (udpController.isConnected.value &&
-                      dataController.coopData['cooperativeCodeName'] !=
-                          'Unknown') {
-                    dialogServices.showLoadingDialog(context);
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    if (udpController.isConnected.value &&
+                        dataController.coopData['cooperativeCodeName'] !=
+                            'Unknown') {
+                      dialogServices.showLoadingDialog(context);
 
-                    Future.delayed(Duration(seconds: 2), () {
-                      // After the delay (or your async task is complete), close the dialog
-                      Navigator.of(context).pop(); // Close the loading dialog
+                      Future.delayed(Duration(seconds: 2), () {
+                        // After the delay (or your async task is complete), close the dialog
+                        Navigator.of(context).pop(); // Close the loading dialog
 
-                      // Then navigate to the next page
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    });
-                  } else {
-                    showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const AlertDialog(
-                          title: Text(
-                            'Not Connected',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 40),
-                          ),
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Please Connect to UDP or receive data first',
-                                style: TextStyle(fontSize: 25),
-                              ),
-                            ],
-                          ),
+                        // Then navigate to the next page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
-                      },
-                    );
-                  }
-                },
-                child: const FittedBox(
-                    child: Text(
-                  'Proceed',
-                  style: TextStyle(fontSize: 50),
-                ))),
+                      });
+                    } else {
+                      showDialog<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const AlertDialog(
+                            title: Text(
+                              'Not Connected',
+                              textAlign: TextAlign.center,
+                              // style: TextStyle(fontSize: 40),
+                            ),
+                            content: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    'Please Connect to UDP or receive data first',
+                                    textAlign: TextAlign.center,
+                                    // style: TextStyle(fontSize: 25),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: const FittedBox(
+                      child: Text(
+                    'Proceed',
+                    // style: TextStyle(fontSize: 50),
+                  ))),
+            ),
           ),
           const SizedBox(
             height: 10,

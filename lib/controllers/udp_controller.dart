@@ -59,6 +59,7 @@ class UdpServices extends GetxService {
   // Send a message
   Future<void> sendMessage(String message) async {
     try {
+      print('sendmessage: $message');
       if (sender != null) {
         message += ",ip:$myIp";
         var dataLength = await sender.value?.send(
@@ -226,14 +227,14 @@ class UdpServices extends GetxService {
             title: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 40),
+              style: TextStyle(fontSize: 30),
             ),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   label,
-                  style: TextStyle(fontSize: 25),
+                  // style: TextStyle(fontSize: 25),
                 ),
               ],
             ),

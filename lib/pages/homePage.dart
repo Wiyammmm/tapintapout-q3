@@ -22,9 +22,10 @@ class _HomePageState extends State<HomePage> {
   // Function you want to call when the widget loads
   Future<void> _initialize() async {
     // Your initialization logic here
-    await nfcController.startNfc();
-    await nfcController.readNFC();
-    await nfcController.nfcDataReceived();
+    await nfcController.closeNfc();
+    await nfcController.openNfc();
+    await nfcController.detectCard();
+    // await nfcController.nfcDataReceived();
 
     print("Initialization Complete");
   }
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         Navigator.of(context).pop();
         dialogServices.showLoadingDialog(context);
         Future.delayed(Duration(seconds: 2), () async {
-          await nfcController.closeNfcRead();
+          await nfcController.closeNfc();
           Navigator.of(context).pop();
           Navigator.pushReplacement(
             context,
@@ -88,66 +89,74 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
+        child: RefreshIndicator(
+      onRefresh: () async {
+        _initialize();
+      },
+      child: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AppBarWidget(),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppBarWidget(),
 
-        SizedBox(
-          height: 20,
-        ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.end,
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.only(right: 16),
-        //       child: IconButton(
-        //           onPressed: () async {
-        //             print('go to settings page');
-        //             await nfcController.closeNfcRead();
+            SizedBox(
+              height: 60,
+            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.only(right: 16),
+            //       child: IconButton(
+            //           onPressed: () async {
+            //             print('go to settings page');
+            //             await nfcController.closeNfcRead();
 
-        //             Navigator.pushReplacement(
-        //               context,
-        //               MaterialPageRoute(builder: (context) => SettingsPage()),
-        //             );
-        //           },
-        //           icon: Icon(
-        //             Icons.settings,
-        //             size: 50,
-        //           )),
-        //     )
-        //   ],
-        // ),
-        GestureDetector(
-          onTap: () {
-            handleTap();
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => SettingsPage()),
-            // );
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(200),
-                border: Border.all(color: Colors.blueAccent, width: 10)),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Image.asset(
-                'assets/card-payment.png',
-                width: MediaQuery.of(context).size.width * 0.25,
+            //             Navigator.pushReplacement(
+            //               context,
+            //               MaterialPageRoute(builder: (context) => SettingsPage()),
+            //             );
+            //           },
+            //           icon: Icon(
+            //             Icons.settings,
+            //             size: 50,
+            //           )),
+            //     )
+            //   ],
+            // ),
+            GestureDetector(
+              onTap: () {
+                handleTap();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => SettingsPage()),
+                // );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(200),
+                    border: Border.all(color: Colors.blueAccent, width: 10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Image.asset(
+                    'assets/card-payment.png',
+                    width: MediaQuery.of(context).size.width * 0.4,
+                  ),
+                ),
               ),
             ),
-          ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Tap your Filipay Card',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        const Text(
-          'Tap your Filipay Card',
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-        ),
-      ],
+      ),
     ));
   }
 }
