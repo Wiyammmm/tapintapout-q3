@@ -7,6 +7,7 @@ import 'package:tps530/pages/settingsPage.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await udpController.connectUDP();
+
   // await nfcController.startNfc();
   // await nfcController.readNFC();
   // await nfcController.nfcDataReceived();

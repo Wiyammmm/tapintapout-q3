@@ -116,6 +116,14 @@ class DialogServices {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 5), () {
+          if (context.mounted) {
+            if (Navigator.of(context).mounted && Navigator.canPop(context)) {
+              print('navigator pop?');
+              Navigator.pop(context);
+            }
+          }
+        });
         return AlertDialog(
           title: Image.asset(
             'assets/filipaylogobanner.png',
@@ -153,6 +161,14 @@ class DialogServices {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 5), () {
+          if (context.mounted) {
+            if (Navigator.of(context).mounted && Navigator.canPop(context)) {
+              print('navigator pop?');
+              Navigator.pop(context);
+            }
+          }
+        });
         return AlertDialog(
           title: Image.asset(
             'assets/filipaylogobanner.png',
@@ -165,7 +181,7 @@ class DialogServices {
               child: Column(
                 children: [
                   Text(
-                    'Your Traveled Fare is ${double.parse(item['remainingBalance'].toString()).toStringAsFixed(2)}',
+                    'Your Traveled Fare is ${double.parse(item['maxFare'].toString()).toStringAsFixed(2)}',
                     style: TextStyle(fontSize: 30),
                   ),
                   Text(

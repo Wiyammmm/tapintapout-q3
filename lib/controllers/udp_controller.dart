@@ -36,14 +36,15 @@ class UdpServices extends GetxService {
 
         await checkMessage(str);
 
-        messages.value.add("Received: $str");
+        // messages.add("Received: $str");
+        messages.add("${messages.length}. Received from driver's device");
         messages.refresh();
       }, onDone: () {
         isConnected.value = false;
-        messages.value.clear();
+        messages.clear();
       }, onError: (e) {
         isConnected.value = false;
-        messages.value.clear();
+        messages.clear();
       });
 
       isConnected.value = true;
@@ -66,7 +67,8 @@ class UdpServices extends GetxService {
           // Endpoint.loopback(port: Port(sunmiPort)),
         );
         if (dataLength != null && dataLength > 0) {
-          messages.value.add('sent: $message');
+          // messages.add('sent: $message');
+          messages.add('${messages.length}. sent message');
           messages.refresh();
         } else {
           print('not connected');
@@ -100,7 +102,7 @@ class UdpServices extends GetxService {
   Future<void> closeUDP() async {
     await sendMessage('close:true');
 
-    messages.value.clear();
+    messages.clear();
     isConnected.value = false;
     messages.refresh();
     isConnected.refresh();
@@ -186,7 +188,7 @@ class UdpServices extends GetxService {
     } else if (matchError != null) {
       print('error');
       String errorMessage = matchError.group(1)!.trim();
-      speak('errorMessage!');
+      speak('$errorMessage');
       showLoadingDialog('${errorMessage}', '');
     } else if (isCoopData) {
       String jsonString =
